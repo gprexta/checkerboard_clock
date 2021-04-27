@@ -6,36 +6,53 @@ canvas {
   display: block;
 }
 
-overflow: hidden;
 
-.div-block {
-  width: 100vw;
-}
-
-.div-block-2 {
+.w-layout-grid {
   display: -ms-grid;
   display: grid;
-  width: 100px;
-  height: 100px;
   grid-auto-columns: 1fr;
-  grid-column-gap: 16px;
-  grid-row-gap: 16px;
   -ms-grid-columns: 1fr 1fr;
   grid-template-columns: 1fr 1fr;
-  -ms-grid-rows: auto auto;
-  grid-template-rows: auto auto;
 }
 
-.heading {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-box-align: start;
-  -webkit-align-items: flex-start;
-  -ms-flex-align: start;
-  align-items: flex-start;
+.div-block {
+  display: block;
+    position: relative;
+    border: 4px;
+    border-style: solid;
+    border-color: #d81616;
+    margin-top: 10vw;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(255,255,255);
+  width: 50vw;
+  height: 50vh;
+
 }
+
+body {
+    color:rgb(0,0,0);
+    text-align: center;
+     font-family: Helvetica;
+  text-transform: lowercase;
+    line-height: 1.4;
+}
+
+#toggle{
+    margin-top: 1.5vh;
+    font-size: 14px;
+    text-align: center;
+    font-family: Helvetica;
+    font-weight: bold;
+    background-color: rgba(255,255,255);
+    border:none;
+}
+
+#toggle:hover{
+ cursor:url(hourglass%20cursor.png), auto;
+    
+}
+#content{
+  display:none;
+}
+

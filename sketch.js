@@ -1,12 +1,19 @@
+var canvas;
+
 function setup() {
-    let cnv = createCanvas(windowWidth, windowHeight);
-    cnv.position(0,0);
+   canvas = createCanvas(windowWidth, windowHeight);
+    canvas.position(0,0);
+      canvas.style('z-index','-1');
     noStroke();
      angleMode(DEGREES);
+    
+//      let gui_setup = new dat.GUI();
+//  gui = new Gui();
+//     gui_setup.add(gui, 'showDescription').onChange(description);
+    
 }
 
 function draw() {
-    background('white');
     var rows = 0;
     var firstColor = 'black';
     var secondColor = 'white';
@@ -35,6 +42,7 @@ function draw() {
         }
         rows = rows + 1
 
+    
     }
 //extra squares
 //        fill(100)
@@ -48,44 +56,65 @@ function draw() {
         rect(35, 35, 1200, 600);
     clockTwo();
 //    clockOne();
-clock();
+digitalClock();
 }
-function clockOne(){
-       translate(85, 85);
-   rotate(-90);
 
-   let hr = hour();
-   let mn = minute();
-   let sc = second();
-
-   strokeWeight(9);
-   stroke('black');
-   noFill();
-   let secondAngle = map(sc, 0, 60, 0, 360);
-   arc(0, 0, 40, 40, 0, secondAngle);
-
-   stroke('black');
-   let minuteAngle = map(mn, 0, 60, 0, 360);
-   arc(0, 0, 60, 60, 0, minuteAngle);
-
-   stroke('black');
-   let hourAngle = map(hr % 12, 0, 12, 0, 360);
-   arc(0, 0, 80, 80, 0, hourAngle);
-
-   push();
-   rotate(secondAngle);
-   stroke(0);
-   pop();
-
-   push();
-   rotate(minuteAngle);
-   stroke(0);
-   pop();
-
-   push();
-   rotate(hourAngle);
-   pop();
+function digitalClock()
+{
+ fill('white');
+//  textFont(myFont);
+  textAlign(CENTER, CENTER);
+  textSize(18);
+  let Hour = hour();
+  let min = minute();
+  let secs = second()
+  let noon = Hour >= 24? " PM" : " "
+  if(min < 10)
+    min = "0"+min
+  Hour%=24
+  // text(Hour+":"+min+":"+secs+noon, width/2, height/2); 
+textAlign(CENTER);
+  text(Hour+":"+min+":"+secs,885,385);
+//  text(min,850,390);
+//  text(secs,850,420);
 }
+
+//function clockOne(){
+//       translate(85, 85);
+//   rotate(-90);
+//
+//   let hr = hour();
+//   let mn = minute();
+//   let sc = second();
+//
+//   strokeWeight(9);
+//   stroke('black');
+//   noFill();
+//   let secondAngle = map(sc, 0, 60, 0, 360);
+//   arc(0, 0, 40, 40, 0, secondAngle);
+//
+//   stroke('black');
+//   let minuteAngle = map(mn, 0, 60, 0, 360);
+//   arc(0, 0, 60, 60, 0, minuteAngle);
+//
+//   stroke('black');
+//   let hourAngle = map(hr % 12, 0, 12, 0, 360);
+//   arc(0, 0, 80, 80, 0, hourAngle);
+//
+//   push();
+//   rotate(secondAngle);
+//   stroke(0);
+//   pop();
+//
+//   push();
+//   rotate(minuteAngle);
+//   stroke(0);
+//   pop();
+//
+//   push();
+//   rotate(hourAngle);
+//   pop();
+//}
 
 function clockTwo(){
       noStroke();
@@ -340,10 +369,14 @@ fill('black');
   rect(837, 168, mint, 33);
   rect(837, 200, sec, 34);
     
+    fill(215,31,39);
+    rect(837,337,96,96);
+    
+    
 // rect(837, 337, hr, 33);
 //  rect(837, 368, mint, 33);
 //  rect(837, 400, sec, 34);
-    
+    fill('white')
     rect(837, 537, hr, 33);
   rect(837, 568, mint, 33);
   rect(837, 600, sec, 34); 
@@ -434,22 +467,24 @@ fill('white');
     
 }
 
-function clock()
-{
- fill("white");
-//  textFont(myFont);
-  textAlign(CENTER, CENTER);
-  textSize(18);
-  let Hour = hour();
-  let min = minute();
-  let secs = second()
-  let noon = Hour >= 24? " PM" : " "
-  if(min < 10)
-    min = "0"+min
-  Hour%=24
-  // text(Hour+":"+min+":"+secs+noon, width/2, height/2); 
-textAlign(CENTER);
-  text(Hour+":"+min+":"+secs,885,385);
-//  text(min,850,390);
-//  text(secs,850,420);
-}
+var description  = document.getElementById("description");
+var content = document.getElementById("content");
+
+toggle.addEventListener("click", function() {
+  content.style.display = (content.dataset.toggled ^= 1) ? "block" : "none";
+});
+
+//function description(){
+//  if(gui.showDescription){
+//    d.style('display','block');
+//  } else {
+//    d.style('display','none');
+//  }
+//}
+
+
+
+
+//function Gui(){
+//    this.showDescription = true;
+//}
